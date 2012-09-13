@@ -16,7 +16,7 @@
 #define BLACKADDER_DEFS_HPP
 
 /**********************************/
-#define PURSUIT_ID_LEN 8 //in bytes
+#define PURSUIT_ID_LEN 32 //in bytes
 #define FID_LEN 8 //in bytes
 #define NODEID_LEN PURSUIT_ID_LEN //in bytes
 /****some strategies*****/
