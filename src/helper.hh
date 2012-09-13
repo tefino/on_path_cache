@@ -18,6 +18,9 @@
  *  This should be the ONLY place where this definition exists!
  */
 #define PURSUIT_ID_LEN 8
+/**
+ *the size in bytes of information bloom filter
+ */
 #define IBFSIZE PURSUIT_ID_LEN
 #define EBFSIZE IBFSIZE
 /** The size in bytes of the label of each Blackadder node (should be statistically unique)
@@ -26,15 +29,7 @@
 #define NODEID_LEN PURSUIT_ID_LEN
 /** The size in bytes of the all LIPSIN identifiers, Link identifiers and internal identifiers
  */
-#define FID_LEN 32
-#define AREA_LENGTH 3//cinc: the length of area ID in bytes
-#define HIGHTLEVEL 3//cinc: the hierachy level
-#define EACHAREA 1 //cinc: the length of each area ID
-#define LASTLENGTH 5 //cinc: the length of the last component of node ID
-
-#define POPTHRESHOLD gc->popthreshold //cinc: the threshold of popularity
-#define DEGREE gc->cache_degree //cinc: the degree of popularity
-#define INTERVAL gc->interval//cinc: the time interval of statiscs
+#define FID_LEN 8
 /****some strategies*****/
 #define NODE_LOCAL          0
 #define LINK_LOCAL          1
@@ -66,49 +61,12 @@
 #define RV_RESPONSE 106
 //our proposal this is for subinfo message destined at publisher
 #define PLEASE_PUSH_DATA 107
-//cinc information item published
+//k-anycast information item published
 #define INFO_PUBLISHED 108
-//cinc tm match pub sub under scope
-
-#define SCOPE_RVS 109
-//cinc pub send scope probing message
-#define SUB_REQ 110
-//cinc sub request to cache routers
-#define NOTIFY_AREAINFO 111
-//cinc: notify routers about the # of routers in their areas
-#define RES_DATA 112
-//cinc: response with data
-#define CINC_SUB_SCOPE 113
-//cinc: subscrip scope
-#define RES_FROM_TM 114
-//cinc: response from TM including all the FID information
-#define CINC_REQ_DATA_CACHE 115
-//cinc: request for data from a cache router
-#define CINC_REQ_DATA_PUB 116
-//cinc: request for data from a publisher node
-#define CINC_CACHE_HIT_FAILED 117
-//cinc: response from router cache hit failed
-#define CINC_ASK_PUB_CACHE 118
-/*cinc: RV ask TM to calculate the path from pub to cache router
- *notify the pub to push data to cache router for caching*/
-#define CINC_PUSH_TO_CACHE 119
-//cinc: RV/TM notify publisher to push data to router for caching
-#define CINC_ERASE_ENTRY 120
-//cinc: RV notify router erase a cache list entry
-#define CINC_CACHE_AGAIN 121
-//cinc: cache router ask pub push cache again, this event happens when the cache is flushed in the cache router,
-//but its popularity is still high and is requested again by a client
-#define CINC_ADD_ENTRY 122
-//cinc: RV notify router add a cache list entry
-
 //k-anycast tm match pub sub under scope
-#define SCOPE_MATCH_PUB_SUB 123
+#define SCOPE_MATCH_PUB_SUB 109
 //k-anycast pub send scope probing message
-#define SCOPE_PROBING 124
-
-#define PUB 1
-#define CACHE 2
-
+#define SCOPE_PROBING 110
 /*RV RETURN CODES - these are unused..The LocalRV returns them for each pub/sub request*/
 #define SUCCESS 0
 #define WRONG_IDS 1
@@ -124,8 +82,8 @@
 /**********************************/
 #define RV_ELEMENT 1 //put the correct click port here
 
+/**********************************/
 #define SCOPE_PROBING_MESSAGE 1
 #define SUB_SCOPE_MESSAGE 2
-
 
 #endif
