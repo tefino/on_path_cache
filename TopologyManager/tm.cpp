@@ -112,7 +112,7 @@ void handleRequest(char *request, int request_len) {
             string destination = (*map_map_iter).first;
             Bitvector *FID_to_publisher = tm_igraph.calculateFID(tm_igraph.nodeID, destination);
             string response_id = resp_bin_prefix_id + (*map_map_iter).first;
-            ba->publish_data(PUBLISH_DATA, response_id, IMPLICIT_RENDEZVOUS, (char *) FID_to_publisher->_data, FID_LEN, response, response_size);
+            ba->publish_data(response_id, IMPLICIT_RENDEZVOUS, (char *) FID_to_publisher->_data, FID_LEN, response, response_size);
             delete FID_to_publisher;
             free(response);
         }
@@ -156,7 +156,7 @@ void handleRequest(char *request, int request_len) {
                 string destination = (*map_map_iter).first;
                 Bitvector *FID_to_publisher = tm_igraph.calculateFID(tm_igraph.nodeID, destination);
                 string response_id = resp_bin_prefix_id + (*map_map_iter).first;
-                ba->publish_data(PUBLISH_DATA, response_id, IMPLICIT_RENDEZVOUS, (char *) FID_to_publisher->_data, FID_LEN, response, response_size);
+                ba->publish_data(response_id, IMPLICIT_RENDEZVOUS, (char *) FID_to_publisher->_data, FID_LEN, response, response_size);
                 delete FID_to_publisher;
                 free(response);
             } else {
@@ -197,7 +197,7 @@ void handleRequest(char *request, int request_len) {
                 string destination = (*map_map_iter).first;
                 Bitvector *FID_to_publisher = tm_igraph.calculateFID(tm_igraph.nodeID, destination);
                 string response_id = resp_bin_prefix_id + (*map_map_iter).first;
-                ba->publish_data(PUBLISH_DATA, response_id, IMPLICIT_RENDEZVOUS, (char *) FID_to_publisher->_data, FID_LEN, response, response_size);
+                ba->publish_data(response_id, IMPLICIT_RENDEZVOUS, (char *) FID_to_publisher->_data, FID_LEN, response, response_size);
                 delete FID_to_publisher;
                 delete result[(*map_map_iter).first];
                 free(response);
@@ -217,7 +217,7 @@ void handleRequest(char *request, int request_len) {
             memcpy(response, &request_type, sizeof (request_type));
             memcpy(response + sizeof (request_type), request + ids_index, request_len - ids_index);
             //cout << "PUBLISHING NOTIFICATION ABOUT NEW OR DELETED SCOPE to node " << nodeID << " using FID " << FID_to_subscriber->to_string() << endl;
-            ba->publish_data(PUBLISH_DATA, response_id, IMPLICIT_RENDEZVOUS, FID_to_subscriber->_data, FID_LEN, response, response_size);
+            ba->publish_data(response_id, IMPLICIT_RENDEZVOUS, FID_to_subscriber->_data, FID_LEN, response, response_size);
             idx += PURSUIT_ID_LEN;
             delete FID_to_subscriber;
             free(response);
@@ -260,7 +260,7 @@ void handleRequest(char *request, int request_len) {
             memcpy(response + sizeof (request_type)+request_len - ids_index+FID_LEN, to_pub_fid._data, FID_LEN) ;
             memcpy(response + sizeof (request_type)+request_len - ids_index+FID_LEN+FID_LEN, to_sub_fid->_data, FID_LEN) ;
             //cout << "PUBLISHING NOTIFICATION ABOUT NEW OR DELETED SCOPE to node " << nodeID << " using FID " << FID_to_subscriber->to_string() << endl;
-            ba->publish_data(PUBLISH_DATA, response_id, IMPLICIT_RENDEZVOUS, FID_to_subscriber->_data, FID_LEN, response, response_size);
+            ba->publish_data(response_id, IMPLICIT_RENDEZVOUS, FID_to_subscriber->_data, FID_LEN, response, response_size);
             idx += PURSUIT_ID_LEN;
             delete FID_to_subscriber;
             delete to_sub_fid ;
