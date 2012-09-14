@@ -185,7 +185,7 @@ int main(int argc, char* argv[]) {
 				break;
 			case PLEASE_PUSH_DATA:
 				cout << "PLEASE_PUSH_DATA: " << chararray_to_hex(ev.id) << endl;
-				ba->publish_data(PUBLISH_DATA, ev.id, IMPLICIT_RENDEZVOUS, ev.to_sub_FID._data, FID_LEN, payload, payload_size);
+				ba->publish_data(ev.id, IMPLICIT_RENDEZVOUS, ev.to_sub_FID._data, FID_LEN, payload, payload_size);
 				break;
 			case STOP_PUBLISH:
 				cout << "STOP_PUBLISH: " << chararray_to_hex(ev.id) << endl;
