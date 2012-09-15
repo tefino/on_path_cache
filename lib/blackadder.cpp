@@ -440,6 +440,7 @@ again:
         }
         else if(ev.type == PLEASE_PUSH_DATA)
         {
+            rv.to_sub_FID.resize(FID_LEN*8) ;
             memcpy(ev.to_sub_FID._data, (char *) ev.buffer+sizeof(struct nlmsghdr)+sizeof(unsigned char)+sizeof(unsigned char)+\
                                             ((int) id_len) * PURSUIT_ID_LEN, FID_LEN) ;
             ev.fid_len = FID_LEN ;
@@ -462,8 +463,6 @@ again:
 Event::Event()
     : type(0), id(), data(NULL), data_len(0), buffer(NULL), fid_len(0)
 {
-    Bitvector tempfid(FID_LEN*8) ;
-    to_sub_FID=tempfid ;
 }
 
 Event::Event(Event &ev) {
