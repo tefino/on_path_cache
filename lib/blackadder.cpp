@@ -440,7 +440,7 @@ again:
         }
         else if(ev.type == PLEASE_PUSH_DATA)
         {
-            rv.to_sub_FID.resize(FID_LEN*8) ;
+            ev.to_sub_FID.resize(FID_LEN*8) ;
             memcpy(ev.to_sub_FID._data, (char *) ev.buffer+sizeof(struct nlmsghdr)+sizeof(unsigned char)+sizeof(unsigned char)+\
                                             ((int) id_len) * PURSUIT_ID_LEN, FID_LEN) ;
             ev.fid_len = FID_LEN ;
