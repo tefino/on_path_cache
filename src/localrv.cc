@@ -817,13 +817,13 @@ unsigned int LocalRV::subscribe_inner_scope(RemoteHost *_subscriber, String &ID,
                 }
             } else {
                 if (sc->strategy == strategy) {
-					if (sc->updateSubscribers(ID, _subscriber)) {
+					if (sc->updateSubscribers(fullID, _subscriber)) {
+						/*add the scope to the subscriber's set*/
+						_subscriber->subscribedScopes.find_insert(StringSetItem(fullID));
 						ret = SUCCESS;
 					} else {
 						ret = EXISTS;
 					}
-					/*add the scope to the subscriber's set*/
-					_subscriber->subscribedScopes.find_insert(StringSetItem(ID));
 					click_chatter("LocalRV: added subscriber %s to scope %s(%d)", _subscriber->remoteHostID.c_str(), sc->printID().c_str(), (int) strategy);
 					/*first notify the subscriber about the existing subscopes*/
 					RemoteHostSet subscribers;
@@ -848,7 +848,7 @@ unsigned int LocalRV::subscribe_inner_scope(RemoteHost *_subscriber, String &ID,
 					}
 					StringSet SIDs ;
 					//Since it's root scope, there aren't any father scopes
-					SIDs.find_insert(ID) ;
+					SIDs.find_insert(fullID) ;
 					if(IIDs.size() > 0){
 						kanycast_notifySubscribers(INFO_PUBLISHED, IIDs, strategy, publishers, subscribers, SIDs, publishers.size()) ;
 					}
