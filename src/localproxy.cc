@@ -429,6 +429,7 @@ bool LocalProxy::storeActiveSubscription(LocalHost *_subscriber, String &fullID,
         } else {
             //click_chatter("LocalProxy: error while trying to update list of subscribers for Active Subscription %s..strategy mismatch", as->fullID.quoted_hex().c_str());
         }
+        return true;
     }
     return false;
 }
