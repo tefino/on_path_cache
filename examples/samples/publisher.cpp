@@ -184,6 +184,7 @@ int main(int argc, char* argv[]) {
 				cout << "SCOPE_UNPUBLISHED: " << chararray_to_hex(ev.id) << endl;
 				break;
 			case PLEASE_PUSH_DATA:
+				data_sent_num++
 				cout << "PLEASE_PUSH_DATA: " << chararray_to_hex(ev.id) << endl;
 				ba->publish_data(ev.id, IMPLICIT_RENDEZVOUS, ev.to_sub_FID._data, FID_LEN, payload, payload_size);
 				break;
