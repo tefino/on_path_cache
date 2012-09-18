@@ -110,7 +110,6 @@ void CacheUnit::cleanup(CleanupStage stage)
         for(int i = 0 ; i < cache.size() ; i++)
         {
             CacheEntry* ce = cache.at(i) ;
-            ce->clean() ;
             delete ce ;
         }
     }
