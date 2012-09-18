@@ -515,6 +515,7 @@ void CacheUnit::storecache(Vector<String>& IDs, char* data, unsigned int datalen
     }
 	if(current_size > cache_size)
 	{
+		click_chatter("cache full flush") ;
 		cache_replace++ ;
 		if(cache_replace == Billion)
 		{
@@ -522,6 +523,7 @@ void CacheUnit::storecache(Vector<String>& IDs, char* data, unsigned int datalen
 			cache_replace_Bill++ ;
 		}
 		CacheEntry* ce = cache[0] ;
+		click_chatter("current num of cache:%d", cache.size()) ;
 		current_size = current_size - cache[0]->total_len ;
 		cache.erase(cache.begin()) ;
 		delete ce ;
