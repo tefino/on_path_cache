@@ -512,6 +512,7 @@ void CacheUnit::storecache(Vector<String>& IDs, char* data, unsigned int datalen
     {
         CacheEntry* newentry = new CacheEntry(newSID, IID, data, datalen) ;
         cache.push_back(newentry) ;
+        current_size += datalen ;
     }
     click_chatter("cache_size:%d current_cache_size:%d", cache_size, current_size) ;
 	if(current_size > cache_size)
